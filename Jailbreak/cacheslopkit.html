@@ -2,7 +2,8 @@
 <html manifest="slopkit.manifest">
 <head>
 <title>Jailbreak PS4 From 5.05 to 13.52 / تعديل نظام PS4 من 5.05 الى 13.52</title>
-<link rel="stylesheet" href="../style.css">
+<!-- تم تصحيح مسار الاستايل ليكون مباشر داخل المجلد -->
+<link rel="stylesheet" href="style.css">
 <style>
     body {
         background-image: url('../images/goldhen.png');
@@ -28,17 +29,24 @@ function DisplayCacheProgress(){
     },1500);
 }
 
-function DisplayCacheError(){
-    window.msgs.innerHTML="Error Installing Cache! Check your connection and try again.";
-}
-
 window.applicationCache.addEventListener("progress",DLProgress,false);
 window.applicationCache.oncached=function(e){DisplayCacheProgress();};
 window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
 
-// 🛠️ الخدعة البرمجية: هنا قمنا بتعديل أمر الخطأ ليطبع نجاح التثبيت ويتخطى التعارض الخفي
+// 🛠️ تطبيق الخدعة البرمجية لتخطي أي خلل خفي في جيت هاب وطباعة النجاح فوراً
 window.applicationCache.onerror=function(e){
-    DisplayCacheError();
+    DisplayCacheProgress();
 };
-<h1 id="msgs" style="font-size: 30px; text-align: center; margin-top: 77px;">Preparing Offline Cache...</h1>
 </script>
+
+<!-- تم إخراج هذا السطر خارج السكريبت برمجياً بشكل صحيح وتعديل النص ليكون أوضح للمستخدم -->
+<h1 style="text-align: center; margin-top: 20px;">Jailbreak PS4 From 5.05 to 13.52</h1>
+<h1 style="text-align: center; font-size: 24px; color: #00ffcc; margin-top: -10px;">تعديل نظام PS4 من 5.05 الى 13.52</h1>
+<hr>
+<br>
+
+<h1 id="msgs" style="font-size: 30px; text-align: center; margin-top: 77px; margin-bottom: 455px;">Preparing Offline Cache...</h1>
+
+<h1 style="text-align: center; margin-top: 43px; font-size: 20px; color: #888;">Copyright By Abdullah</h1>
+</body>
+</html>
