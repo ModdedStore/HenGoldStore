@@ -1,0 +1,104 @@
+html {
+    /* تم تعديل المسار ليتعرف على صورتك الجديدة ويمنع خطأ الـ 35% */
+    background-image: url('../images/goldhen.png');
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-color: #0a0b10; /* خلفية داكنة تناسب المتجر الجديد */
+    color: white;
+    text-align: center;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+    font-size: 25px;
+    color: white;
+    font-weight: 800;
+}
+
+a {
+    text-decoration: none;
+}
+
+#progress {
+    display: block;
+}
+
+#menu {
+    display: block;
+}
+
+#crypto {
+    display: none;
+}
+
+#tools {
+    display: none;
+}
+
+#lnx {
+    display: none;
+}
+
+#mods {
+    display: none;
+}
+
+/* ترقية الأزرار إلى ستايل النيون الفخم المتناسق مع متجرك */
+.btn {
+    background: linear-gradient(90deg, #00ffcc, #00b3ff);
+    color: #000000;
+    width: 227px;
+    height: 46px;
+    padding-bottom: 2px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-style: none;
+    transition-duration: 0.3s;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 255, 204, 0.15);
+}
+
+.btn:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
+    transform: translateY(-2px);
+}
+
+/* زر أونلاين باللون الأخضر المضيء */
+.btn-onln {
+    background: linear-gradient(90deg, #00ff66, #00cc52);
+    color: #000000;
+}
+
+.btn-onln:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 102, 0.4);
+}
+
+/* زر التول بوكس باللون الأحمر/الوردي المضيء مالت الكولد هن */
+.btn-toolbox {
+    background: linear-gradient(90deg, #ff0055, #ff3377);
+    color: #ffffff;
+}
+
+.btn-toolbox:hover {
+    box-shadow: 0 0 20px rgba(255, 0, 85, 0.4);
+}
+
+/* زر المولتي باللون الذهبي/الأصفر المضيء */
+.btn-multi {
+    background: linear-gradient(90deg, #ffcc00, #ffaa00);
+    color: #000000;
+}
+
+.btn-multi:hover {
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.4);
+}
