@@ -1,10 +1,22 @@
 CACHE MANIFEST 
 
+# v20 - Full Offline Cache For 13.02 - 13.52
+
 CACHE:
 ../images/goldhen.png
 style.css
+goldhen_2.4b18.12.bin
 index.html
 cacheslopkit.html
+slopkit/core.js
+slopkit/int64.js
+slopkit/jb.js
+slopkit/mem.js
+slopkit/ps4_offsets.js
+slopkit/rpc_worker.js
+slopkit/patches/1302.bin
+slopkit/patches/1350.bin
+slopkit/patches/1352.bin
 
 NETWORK:
 *
