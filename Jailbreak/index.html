@@ -32,16 +32,18 @@ if (!isPS4) {
         document.getElementById("msgs").innerHTML = "Only for PS4 with Firmware 5.05 and 7.00 to 13.52";
     });
 } else {
-    // الخدعة البرمجية الذكية: فحص إذا كان المتصفح قد قام بتخزين الكاش مسبقاً أم لا
+    // فحص إذا كان المتصفح قد قام بتخزين الكاش مسبقاً أم لا
     if (!localStorage.getItem('JailbreakCached')) {
-        // إذا كانت أول مرة، ينقله لصفحة التثبيت الفوري
         window.location.replace("cacheslopkit.html");
     } else {
-        // إذا كان مكيش مسبقاً، يشغل الجيلبريك فوراً أوفلاين حتى لو الإنترنت مقطوع
+        // تشغيل الجيلبريك أوفلاين فوراً من الذاكرة
         document.addEventListener("DOMContentLoaded", () => {
             var script = document.createElement('script');
             script.type = 'module';
-            script.src = "slopkit/jb.js";
+            
+            // تم تصحيح المسار ليتوجه إلى ملف التفعيل لثغرة إصدارك الحديث مباشرة
+            script.src = "slopkit/jb.js?v=19";
+            
             script.onerror = onScriptError;
             document.head.appendChild(script);
         });
