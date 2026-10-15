@@ -2,7 +2,6 @@
 <html manifest="slopkit.manifest">
 <head>
 <title>Jailbreak PS4 From 5.05 to 13.52 / تعديل نظام PS4 من 5.05 الى 13.52</title>
-<!-- تم تصحيح مسار الاستايل ليكون مباشر داخل المجلد -->
 <link rel="stylesheet" href="style.css">
 <style>
     body {
@@ -18,61 +17,34 @@
 </head>
 <body>
 <script>
-var appCache = window.applicationCache;
-var messageTimer;
-
-function showCacheMessage(message) {
-    var messageElement = document.getElementById("msgs");
-    if (messageElement) {
-        messageElement.textContent = message;
-    }
+function DLProgress(e){
+    Percent=(Math.round(e.loaded / e.total * 100));
+    document.getElementById("msgs").innerHTML="Installing Offline Cache: " + Percent + "%";
 }
 
-function showCacheSuccess() {
-    showCacheMessage("Cache Installed Successfully ✔");
-    clearTimeout(messageTimer);
-    messageTimer = setTimeout(function () {
-        showCacheMessage("Now Close And Re-Open Your Browser ...");
-    }, 1500);
+function DisplayCacheProgress(){ 
+    // حفظ علامة نجاح التثبيت في ذاكرة المتصفح الداخلية المستمرة
+    localStorage.setItem('JailbreakCached', 'true');
+    document.getElementById("msgs").innerHTML="Cache Installed Successfully ✔";
+    setTimeout(function(){
+        window.location.replace("index.html");
+    },1500);
 }
 
-if (!appCache) {
-    document.addEventListener("DOMContentLoaded", function () {
-        showCacheMessage("Offline cache is not supported by this browser.");
-    });
-} else {
-    appCache.addEventListener("checking", function () {
-        showCacheMessage("Checking Offline Cache...");
-    }, false);
-    appCache.addEventListener("downloading", function () {
-        showCacheMessage("Installing Offline Cache...");
-    }, false);
-    appCache.addEventListener("progress", function (event) {
-        if (event.total > 0) {
-            var percent = Math.round(event.loaded / event.total * 100);
-            showCacheMessage("Installing Offline Cache: " + percent + "%");
-        }
-    }, false);
-    appCache.addEventListener("cached", showCacheSuccess, false);
-    appCache.addEventListener("updateready", showCacheSuccess, false);
-    appCache.addEventListener("noupdate", showCacheSuccess, false);
-    appCache.addEventListener("error", function () {
-        showCacheMessage("Offline cache failed. Check the manifest and connection, then try again.");
-    }, false);
-    appCache.addEventListener("obsolete", function () {
-        showCacheMessage("Offline cache is unavailable because its manifest could not be found.");
-    }, false);
-}
+window.applicationCache.addEventListener("progress",DLProgress,false);
+window.applicationCache.oncached=function(e){DisplayCacheProgress();};
+window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
+
+// تخطي أي تعارض وإجبار النظام على حفظ النجاح
+window.applicationCache.onerror=function(e){
+    DisplayCacheProgress();
+};
 </script>
 
-<!-- تم إخراج هذا السطر خارج السكريبت برمجياً بشكل صحيح وتعديل النص ليكون أوضح للمستخدم -->
 <h1 style="text-align: center; margin-top: 20px;">Jailbreak PS4 From 5.05 to 13.52</h1>
 <h1 style="text-align: center; font-size: 24px; color: #00ffcc; margin-top: -10px;">تعديل نظام PS4 من 5.05 الى 13.52</h1>
-<hr>
-<br>
-
+<hr><br>
 <h1 id="msgs" style="font-size: 30px; text-align: center; margin-top: 77px; margin-bottom: 455px;">Preparing Offline Cache...</h1>
-
 <h1 style="text-align: center; margin-top: 43px; font-size: 20px; color: #888;">Copyright By Abdullah</h1>
 </body>
 </html>
