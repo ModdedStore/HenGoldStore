@@ -18,25 +18,51 @@
 </head>
 <body>
 <script>
-history.replaceState(null,null,'index.html');var histlength=history.length;history.go(-histlength);
-function DLProgress(e){Percent=(Math.round(e.loaded / e.total * 100));window.msgs.innerHTML="Installing Offline Cache: " + Percent + "%";}
+var appCache = window.applicationCache;
+var messageTimer;
 
-// دالة النجاح
-function DisplayCacheProgress(){ 
-    window.msgs.innerHTML="Cache Installed Successfully ✔";
-    setTimeout(function(){
-        window.msgs.innerHTML="Now Close And Re-Open Your Browser ...";
-    },1500);
+function showCacheMessage(message) {
+    var messageElement = document.getElementById("msgs");
+    if (messageElement) {
+        messageElement.textContent = message;
+    }
 }
 
-window.applicationCache.addEventListener("progress",DLProgress,false);
-window.applicationCache.oncached=function(e){DisplayCacheProgress();};
-window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
+function showCacheSuccess() {
+    showCacheMessage("Cache Installed Successfully ✔");
+    clearTimeout(messageTimer);
+    messageTimer = setTimeout(function () {
+        showCacheMessage("Now Close And Re-Open Your Browser ...");
+    }, 1500);
+}
 
-// 🛠️ تطبيق الخدعة البرمجية لتخطي أي خلل خفي في جيت هاب وطباعة النجاح فوراً
-window.applicationCache.onerror=function(e){
-    DisplayCacheProgress();
-};
+if (!appCache) {
+    document.addEventListener("DOMContentLoaded", function () {
+        showCacheMessage("Offline cache is not supported by this browser.");
+    });
+} else {
+    appCache.addEventListener("checking", function () {
+        showCacheMessage("Checking Offline Cache...");
+    }, false);
+    appCache.addEventListener("downloading", function () {
+        showCacheMessage("Installing Offline Cache...");
+    }, false);
+    appCache.addEventListener("progress", function (event) {
+        if (event.total > 0) {
+            var percent = Math.round(event.loaded / event.total * 100);
+            showCacheMessage("Installing Offline Cache: " + percent + "%");
+        }
+    }, false);
+    appCache.addEventListener("cached", showCacheSuccess, false);
+    appCache.addEventListener("updateready", showCacheSuccess, false);
+    appCache.addEventListener("noupdate", showCacheSuccess, false);
+    appCache.addEventListener("error", function () {
+        showCacheMessage("Offline cache failed. Check the manifest and connection, then try again.");
+    }, false);
+    appCache.addEventListener("obsolete", function () {
+        showCacheMessage("Offline cache is unavailable because its manifest could not be found.");
+    }, false);
+}
 </script>
 
 <!-- تم إخراج هذا السطر خارج السكريبت برمجياً بشكل صحيح وتعديل النص ليكون أوضح للمستخدم -->

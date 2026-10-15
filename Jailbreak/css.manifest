@@ -1,10 +1,13 @@
 CACHE MANIFEST 
 
+# v20 - Full Offline Cache For 10.00 - 11.02
+
 CACHE:
 ../images/goldhen.png
 style.css
 index.html
 cachecss.html
+css/main.js
 
 NETWORK:
 *
